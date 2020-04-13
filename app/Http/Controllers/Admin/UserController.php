@@ -104,8 +104,8 @@ class UserController extends Controller
     public function update(Request $request)
     {
        $input = $request->all();
-       $pass = Crypt::encrypt($input['pass']);
-       $rs = User::where(['id' => $input['uid']])->update(['username' => $input['username'],'email' => $input['email'],'password'=>$pass]);
+       // $pass = Crypt::encrypt($input['pass']);
+       $rs = User::where(['id' => $input['uid']])->update(['username' => $input['username'],'email' => $input['email']]);
         if ($rs) {
            $data = [
             'code'=> 1,
@@ -136,12 +136,12 @@ class UserController extends Controller
         if ($rs) {
            $data = [
             'code'=> 1,
-            'msg' => '修改成功'
+            'msg' => '删除成功'
            ];
         }else{
             $data = [
             'code'=> 0,
-            'msg' => '修改失败'
+            'msg' => '删除失败'
            ];
         }
 
