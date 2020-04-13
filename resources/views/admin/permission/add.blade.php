@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <title>欢迎页面-X-admin2.2</title>
         <meta name="renderer" content="webkit">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <link rel="stylesheet" href="/css/font.css">
@@ -25,20 +26,16 @@
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red">*</span>权限名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_email" name="email" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="L_email" name="name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                         </div>
                     <div class="layui-form-item" style="width:300px;">
                         <label for="L_username" class="layui-form-label">
                             <span class="x-red">*</span>上级权限</label>
                         <!-- <div class="layui-input-inline"> -->
                              <div class="layui-input-block">
-                                  <select name="city" lay-verify="required">
-                                    <option value=""></option>
-                                    <option value="0">北京</option>
-                                    <option value="1">上海</option>
-                                    <option value="2">广州</option>
-                                    <option value="3">深圳</option>
-                                    <option value="4">杭州</option>
+                                  <select name="parent_id" lay-verify="required">
+                                    <option value="0"></option>
+                                    <option value="1">北京</option>
                                   </select>
                             </div>
                         <!-- </div> -->
@@ -47,13 +44,13 @@
                         <label for="L_pass" class="layui-form-label">
                             <span class="x-red">*</span>权限URL</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_pass" name="pass" required="" lay-verify="pass" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="L_pass" name="url" required="" lay-verify="pass" autocomplete="off" class="layui-input"></div>
                         </div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label">
                             <span class="x-red">*</span>序号</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_repass" name="repass" required="" lay-verify="repass" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="L_repass" name="sort" required="" lay-verify="repass" autocomplete="off" class="layui-input" value="100"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
@@ -87,7 +84,32 @@
                 function(data) {
                     console.log(data);
                     //发异步，把数据提交给php
+                    $.ajax({
+                        method:'post',
+                        url:'/index.php/admin/permission/doAdd',
+                        data:data.field,
+                        dataType:'JSON',   
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success:function(data){
+                                if (data.code == 1) {
+                                    layer.msg(data.msg,{icon:6,time:3000},function(){ 
+                                         // 获得frame索引
+                                        var index = parent.layer.getFrameIndex(window.name);
+                                        //关闭当前frame
+                                        parent.layer.close(index);
+                                        parent.location.reload(true);
+                                    });
+                                }else if(data.code == 0){
+                                    layer.alert(data.msg,{icon:5,time:3000},function(){
+                                        // parent.location.reload(true);
+                                    });
+                                }
+                        },
+                        error:function(){
 
+                        }
+
+                    });
                     
                     // layer.alert("增加成功", {
                     //     icon: 6
@@ -99,7 +121,7 @@
                     //     // 可以对父窗口进行刷新 
                     //     xadmin.father_reload();
                     // });
-                    // return false;
+                    return false;
                 });
 
             });</script>

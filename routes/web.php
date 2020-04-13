@@ -66,6 +66,8 @@ Route::get('/', function () {
 
 	Route::get('permission/add','PermissionController@add');
 
+	Route::post('permission/doAdd','PermissionController@doAdd');
+
 
 
 
