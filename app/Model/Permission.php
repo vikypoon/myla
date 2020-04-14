@@ -8,7 +8,7 @@ class Permission extends Model
 {
     public $table = 'permission';
 
-	public $primaryKey = 'access_id';
+	public $primaryKey = 'permission_id';
 
 	protected $guarded = [];
 

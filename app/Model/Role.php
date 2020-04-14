@@ -8,7 +8,7 @@ class Role extends Model
 {
     public $table = 'role';
 
-	public $primaryKey = 'id';
+	public $primaryKey = 'role_id';
 
 	protected $guarded = [];
 
