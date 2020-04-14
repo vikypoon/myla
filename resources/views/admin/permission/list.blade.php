@@ -43,25 +43,26 @@
                                       <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
                                     </th>
                                     <th>ID</th>
-                                    <th>用户名</th>
-                                    <th>性别</th>
-                                    <th>手机</th>
-                                    <th>地址</th>
-                                    <th>状态</th>
+                                    <th>名称</th>
+                                    <th>上级</th>
+                                    <th>URL</th>
+                                    <th>序号</th>
+                                    <!-- <th>状态</th> -->
                                     <th>操作</th></tr>
                                 </thead>
                                 <tbody>
+                                  @foreach ($user as $v)
                                   <tr>
                                     <td>
                                       <input type="checkbox" name="id" value="1"   lay-skin="primary"> 
                                     </td>
-                                    <td>1</td>
-                                    <td>小明</td>
-                                    <td>男</td>
-                                    <td>13000000000</td>
-                                    <td>北京市 海淀区</td>
-                                    <td class="td-status">
-                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
+                                    <td>{{$v->access_id}}</td>
+                                    <td>{{$v->name}}</td>
+                                    <td>{{$v->parent_id}}</td>
+                                    <td>{{$v->url}}</td>
+                                    <td>{{$v->sort}}</td>
+                                    <!-- <td class="td-status">
+                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td> -->
                                     <td class="td-manage">
                                       <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                                         <i class="layui-icon">&#xe601;</i>
@@ -77,18 +78,14 @@
                                       </a>
                                     </td>
                                   </tr>
+                                  @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                  <a class="prev" href="">&lt;&lt;</a>
-                                  <a class="num" href="">1</a>
-                                  <span class="current">2</span>
-                                  <a class="num" href="">3</a>
-                                  <a class="num" href="">489</a>
-                                  <a class="next" href="">&gt;&gt;</a>
+                                  {!!$user->render()!!}
                                 </div>
                             </div>
                         </div>

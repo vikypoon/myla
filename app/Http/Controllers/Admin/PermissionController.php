@@ -9,7 +9,8 @@ use App\Model\Permission;
 class PermissionController extends Controller
 {
     public function index(){
-    	return view('admin/permission/list');
+    	$user = Permission::paginate(5);
+    	return view('admin/permission/list',compact('user'));
     }
 
     public function add(){
