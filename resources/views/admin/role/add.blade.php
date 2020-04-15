@@ -26,14 +26,14 @@
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red">*</span>角色</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_email" name="role_name" required="" required lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="L_email" name="role_name" class="layui-input"></div>
                         </div>
                     <div class="layui-form-item" style="width:500px;">
                         <label for="L_username" class="layui-form-label">
                             <span class="x-red">*</span>权限</label>
                             @foreach ($per as $v)
                         <div class="layui-input-inline" style="width:50px;">
-                            <input type="checkbox" name="permission[]" required lay-verify="required" title="{{$v->name}}" value="{{$v->access_id}}" lay-skin="primary">
+                            <input type="checkbox" name="permission[]" title="{{$v->name}}" value="{{$v->permission_id}}" lay-skin="primary">
                         </div>
                         @endforeach
                     </div>
@@ -41,7 +41,7 @@
                         <label for="L_repass" class="layui-form-label">
                             <span class="x-red">*</span>序号</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_repass" name="sort" required="" lay-verify="repass" autocomplete="off" class="layui-input" value="100"></div>
+                            <input type="text" id="L_repass" name="sort"  class="layui-input" value="100"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
