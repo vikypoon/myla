@@ -49,4 +49,17 @@ class RoleController extends Controller
 
 			return redirect('admin/role/index');
     }
+
+    public function edit($id){
+    	$role = Role::find($id);
+    	$per = $role->permission;
+    	$pers = [];
+    	// dump($per);
+    	$permission = Permission::get();
+    	foreach ($per as $v) {
+    		$pers[] = $v->permission_id;
+    	}
+    	// dd($pers);
+    	return view('admin/role/edit',compact('role','permission','pers'));
+    }
 }

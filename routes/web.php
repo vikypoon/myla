@@ -62,6 +62,8 @@ Route::get('/', function () {
 
 	Route::get('role/add','RoleController@add');
 
+	Route::get('role/edit/{id}','RoleController@edit');
+
 	Route::post('role/doAdd','RoleController@doAdd');
 
 	Route::get('permission/index','PermissionController@index');
