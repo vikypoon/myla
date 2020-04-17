@@ -60,7 +60,7 @@
                                     <td class="td-manage">
                                       
                                       <a onclick="xadmin.open('授权','{{url('admin/role/edit/'.$v->role_id.'')}}',600,400)" title="授权" href="javascript:;">
-                                        <i class="layui-icon">&#xe672;</i>
+                                        <i class="layui-icon">&#xe631;</i>
                                       </a>
                                       <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                         <i class="layui-icon">&#xe640;</i>

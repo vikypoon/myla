@@ -49,7 +49,7 @@
                                     <th>性别</th>
                                     <th>手机</th>
                                     <th>地址</th>
-                                    <th>状态</th>
+                                    <!-- <th>状态</th> -->
                                     <th>操作</th></tr>
                                 </thead>
                                 <tbody>
@@ -63,8 +63,8 @@
                                     <td>男</td>
                                     <td>13000000000</td>
                                     <td>北京市 海淀区</td>
-                                    <td class="td-status">
-                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
+                                    <!-- <td class="td-status">
+                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td> -->
                                     <td class="td-manage">
                                       <a onclick="member_stop(this,'{{$v->id}}')" href="javascript:;"  title="启用">
                                         <i class="layui-icon">&#xe601;</i>

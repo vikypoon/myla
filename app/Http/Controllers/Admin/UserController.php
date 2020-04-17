@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {   
         $user = User::paginate(5);
-       return view('admin.user.user-list',compact('user'));
+       return view('admin.user.list',compact('user'));
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {   
-        return view('admin.user.user-add');
+        return view('admin.user.add');
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
     public function edit($id)
     {   
         $user = User::find($id);
-        return view('admin.user.user-edit',compact('user'));
+        return view('admin.user.edit',compact('user'));
     }
 
     /**

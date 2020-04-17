@@ -22,6 +22,7 @@
         <div class="layui-fluid">
             <div class="layui-row">
                 <form class="layui-form">
+                    <input type="hidden" name="role_id" value="{{$role->role_id}}">
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red">*</span>角色</label>
@@ -52,7 +53,7 @@
                     </div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn" lay-filter="add" lay-submit="">增加</button>
+                        <button class="layui-btn" lay-filter="add" lay-submit="">修改</button>
                     </div>
                 </form>
             </div>
@@ -70,10 +71,10 @@
                 function(data) {
                     console.log(data);
                     //发异步，把数据提交给php
-
+                    var role_id = $("input[name='role_id']").val();
                     $.ajax({
                         method:'post',
-                        url:'/index.php/admin/role/edit',
+                        url:'/index.php/admin/role/doAuth/'+role_id,
                         data:data.field,
                         dataType:'JSON',   
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

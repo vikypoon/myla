@@ -62,4 +62,26 @@ class RoleController extends Controller
     	// dd($pers);
     	return view('admin/role/edit',compact('role','permission','pers'));
     }
+
+
+    public function doAuth(Request $request){
+    	$input = $request->all();
+    	// dd($input);
+    	try{
+    		DB::beginTransaction();
+	    	\DB::table('role_permission')->where('role_id',$input['role_id'])->delete();
+	    	if (!empty($input['permission_id'])) {
+	    		foreach ($input['permission_id'] as $v) {
+	    			\DB::table('role_permission')->insert(['role_id'=>$input['role_id'],'permission_id'=>$v,'create_time'=>time()]);
+	    		}
+	    	}
+	    	DB::commit(); 
+    	}catch (\Exception $e) { 
+			      	//接收异常处理并回滚
+					return $e->getMessage();
+			      	DB::rollBack(); 
+			}
+			return array('code'=>1,'msg'=>'修改成功');
+    	
+    }
 }
