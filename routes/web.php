@@ -50,13 +50,17 @@ Route::get('/', function () {
 
 	Route::post('admin/doAdd','AdminUserController@doAdd');
 
-	Route::get('admin/edit/{id}','AdminUserController@edit');
+	Route::get('admin/edit/{user_id}','AdminUserController@edit');
 
-	Route::post('admin/update/{id}','AdminUserController@update');
+	Route::get('admin/auth/{user_id}','AdminUserController@auth');
 
-	Route::post('admin/del/{id}','AdminUserController@del');
+	Route::post('admin/update/{user_id}','AdminUserController@update');
+
+	Route::post('admin/del/{user_id}','AdminUserController@del');
 
 	Route::post('admin/status','AdminUserController@status');
+
+	Route::post('admin/doAuth/{user_id}','AdminUserController@doAuth');
 
 	Route::get('role/index','RoleController@index');
 

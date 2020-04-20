@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'isLogin' => \App\Http\Middleware\IsLogin::class,
+        'hasRole' => \App\Http\Middleware\hasRole::class,
     ];
 
     /**

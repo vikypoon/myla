@@ -39,7 +39,6 @@
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
                                 <thead>
-                                  @foreach ($role as $v)
                                   <tr>
                                     <th>
                                       <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
@@ -50,6 +49,7 @@
                                     <th>操作</th></tr>
                                 </thead>
                                 <tbody>
+                                  @foreach ($role as $v)
                                   <tr>
                                     <td>
                                       <input type="checkbox" name="id" value="1"   lay-skin="primary"> 
