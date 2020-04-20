@@ -21,7 +21,7 @@
         <div class="layui-fluid">
             <div class="layui-row">
                 <form class="layui-form">
-                    <input type="hidden" name="uid" value="{{$user->id}}">
+                    <input type="hidden" name="uid" value="{{$user->user_id}}">
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red">*</span>邮箱</label>

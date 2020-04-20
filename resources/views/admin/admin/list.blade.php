@@ -56,9 +56,9 @@
                                   @foreach($admin as $v)
                                   <tr>
                                     <td>
-                                      <input type="checkbox" name="id" value="1"   lay-skin="primary"> 
+                                      <input type="checkbox" name="user_id" value="1"   lay-skin="primary"> 
                                     </td>
-                                    <td>{{$v->id}}</td>
+                                    <td>{{$v->user_id}}</td>
                                     <td>{{$v->user_name}}</td>
                                     <td>男</td>
                                     <td>13000000000</td>
@@ -66,13 +66,13 @@
                                     <!-- <td class="td-status">
                                       <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td> -->
                                     <td class="td-manage">
-                                      <a onclick="member_stop(this,'{{$v->id}}')" href="javascript:;"  title="启用">
-                                        <i class="layui-icon">&#xe601;</i>
+                                      <a onclick="xadmin.open('编辑','{{url('admin/admin/auth/'.$v->user_id.'')}}',600,400)" href="javascript:;"  title="授权">
+                                        <i class="layui-icon">&#xe631;</i>
                                       </a>
-                                      <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/admin/edit/'.$v->id.'')}}',600,400)" href="javascript:;">
+                                      <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/admin/edit/'.$v->user_id.'')}}',600,400)" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                       </a>
-                                      <a title="删除" onclick="member_del(this,'{{$v->id}}')" href="javascript:;">
+                                      <a title="删除" onclick="member_del(this,'{{$v->user_id}}')" href="javascript:;">
                                         <i class="layui-icon">&#xe640;</i>
                                       </a>
                                     </td>
@@ -130,13 +130,13 @@
       });
 
        /*用户-停用*/
-      function member_stop(obj,id){
+      function member_stop(obj,user_id){
          layer.confirm('确认要停用吗？',function(index){
               if($(obj).attr('title')=='启用'){
                 $.ajax({
                   url:'/index.php/admin/admin/status',
                   type:'post',
-                  data:{"id":id,"active":"1"},
+                  data:{"user_id":user_id,"active":"1"},
                   headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                   success:function(data){
                     // alert(666);
@@ -153,7 +153,7 @@
                 $.ajax({
                   url:'/index.php/admin/admin/status',
                   type:'post',
-                  data:{"id":id,"active":"0"},
+                  data:{"user_id":user_id,"active":"0"},
                   headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                   success:function(data){
                     // alert(666);
@@ -173,9 +173,9 @@
       }
 
       /*用户-删除*/
-      function member_del(obj,id){
+      function member_del(obj,user_id){
          layer.confirm('确认要删除吗？',function(index){
-             $.post('/index.php/admin/admin/del/'+id,{"_method":"post","_token":"{{csrf_token()}}"},function(data){
+             $.post('/index.php/admin/admin/del/'+user_id,{"_method":"post","_token":"{{csrf_token()}}"},function(data){
                 if (data.code == 1) {
                   $(obj).parents("tr").remove();
                   layer.msg(data.msg,{icon:1,time:3000});

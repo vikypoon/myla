@@ -19,7 +19,7 @@ class LoginController extends Controller
    		$input = Request::all();
    		$adminUserModel = new adminUser();
    		$user = $adminUserModel->exists_user($input['username']);
-   		$uid = $user['id'];
+   		$uid = $user['user_id'];
    		// dd($id);die;
    		if (!$user) {
    			return json_encode(['msg'=>'嗯哼，查无此人！']);
