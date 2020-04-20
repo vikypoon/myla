@@ -21,7 +21,9 @@ Route::get('/', function () {
 
 	Route::post('admin/login/login','Admin\LoginController@login');
 
-	Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'isLogin'],function(){
+	Route::get('noaccess','Admin\LoginController@noaccess');
+
+	Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin','hasRole']],function(){
 
 	Route::get('index/index','IndexController@index');
 

@@ -50,4 +50,8 @@ class LoginController extends Controller
 
    
 
+   public function noaccess(){
+      return view('admin/error/noaccess');
+   }
+
 }
