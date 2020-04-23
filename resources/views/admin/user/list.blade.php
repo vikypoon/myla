@@ -33,12 +33,12 @@
                     <div class="layui-card">
                         <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5">
-                                <div class="layui-inline layui-show-xs-block">
+                                <!-- <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
-                                </div>
+                                </div> -->
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
                                 </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./user-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加用户','{{url('admin/user/add')}}',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
@@ -70,26 +70,26 @@
                                   @foreach ($user as $v)
                                   <tr>
                                     <td>
-                                      <input type="checkbox" name="id"  lay-skin="primary"  data-id="{{$v->id}}"> 
+                                      <input type="checkbox" name="id"  lay-skin="primary"  data-id="{{$v['id']}}"> 
                                     </td>
-                                    <td>{{$v->id}}</td>
-                                    <td>{{$v->username}}</td>
+                                    <td>{{$v['id']}}</td>
+                                    <td>{{$v['username']}}</td>
                                     <td>男</td>
-                                    <td>{{$v->email}}</td>
+                                    <td>{{$v['email']}}</td>
                                     <!-- <td>北京市 海淀区</td> -->
                                     <td class="td-status">
                                       <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
                                     <td class="td-manage">
-                                      <a onclick="member_stop(this,'{{$v->id}}')" href="javascript:;"  title="启用">
+                                      <a onclick="member_stop(this,'{{$v['id']}}')" href="javascript:;"  title="启用">
                                         <i class="layui-icon">&#xe601;</i>
                                       </a>
-                                      <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/user/edit/'.$v->id.'')}}',600,400)" href="javascript:;">
+                                      <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/user/edit/'.$v['id'].'')}}',600,400)" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                       </a>
-                                      <!-- <a onclick="xadmin.open('修改密码','{{url('admin/user/del/'.$v->id.'')}}',600,400)" title="修改密码" href="javascript:;">
+                                      <!-- <a onclick="xadmin.open('修改密码','{{url('admin/user/del/'.$v['id'].'')}}',600,400)" title="修改密码" href="javascript:;">
                                         <i class="layui-icon">&#xe631;</i>
                                       </a> -->
-                                      <a title="删除" onclick="member_del(this,'{{$v->id}}')" href="javascript:;">
+                                      <a title="删除" onclick="member_del(this,'{{$v['id']}}')" href="javascript:;">
                                         <i class="layui-icon">&#xe640;</i>
                                       </a>
                                     </td>
@@ -101,7 +101,7 @@
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                 {!!$user->render()!!}
+                               
                                 </div>
                             </div>
                         </div>

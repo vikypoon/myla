@@ -22,7 +22,7 @@ Route::get('/', function () {
 	Route::post('admin/login/login','Admin\LoginController@login');
 
 	Route::get('noaccess','Admin\LoginController@noaccess');
-
+	//
 	Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin','hasRole']],function(){
 
 	Route::get('index/index','IndexController@index');
@@ -35,7 +35,7 @@ Route::get('/', function () {
 
 	Route::post('user/doAdd','UserController@doAdd');
 
-	Route::get('user/edit/{id}','UserController@edit');
+	Route::any('user/edit/{id}','UserController@edit');
 
 	Route::post('user/update/{id}','UserController@update');
 

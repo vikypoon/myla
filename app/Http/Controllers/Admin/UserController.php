@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use App\Model\User;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -16,7 +17,30 @@ class UserController extends Controller
      */
     public function index()
     {   
-        $user = User::paginate(5);
+
+
+        $user = [];
+        $listkey = "LIST:USER";
+        $haskey = "HASH:USER";
+        if (Redis::exists($listkey)) {
+            $lists = Redis::lrange($listkey,0,-1);
+            foreach ($lists as  $c) {
+                $user[] = Redis::hgetall($haskey.$c);
+            }
+                // foreach ($user as  $d) {
+                //     # code...
+                // }
+            // dd($user);
+        }else{
+            $user = User::get()->toarray();
+            foreach ($user as $a) {
+                    Redis::rpush($listkey,$a['id']);
+                    Redis::expire($listkey,60);
+                    Redis::hmset($haskey.$a['id'],$a);
+                    Redis::expire($haskey.$a['id'],60);
+            }
+        }
+        //$user = User::paginate(5);
        return view('admin.user.list',compact('user'));
     }
 
