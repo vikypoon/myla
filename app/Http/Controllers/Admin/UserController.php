@@ -27,10 +27,6 @@ class UserController extends Controller
             foreach ($lists as  $c) {
                 $user[] = Redis::hgetall($haskey.$c);
             }
-                // foreach ($user as  $d) {
-                //     # code...
-                // }
-            // dd($user);
         }else{
             $user = User::get()->toarray();
             foreach ($user as $a) {
